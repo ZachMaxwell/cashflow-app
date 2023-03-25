@@ -33,6 +33,7 @@ class DataInputItem(models.Model):
     ENTRY_TYPE_CHOICES = [
         ('DEPOSIT', 'Deposit'),
         ('EXPENSE', 'Expense'),
+        ('INVESTMENT', 'Investment'),
 
     ]
    
@@ -42,7 +43,7 @@ class DataInputItem(models.Model):
         ('RENT', 'Rent & Utilities'),
         ('MISCELLANEOUS', 'Personal, Travel, & other Events'),
         ('LOANS', 'Loan Payments'),
-        ('INVESTMENTS', 'Investment Contributions' ),
+        ('INVESTMENT', 'Investment Contributions'),
         ('SUBSCRIPTIONS', 'Subscriptions' ),
         ('GROCERY', 'Grocery'),
         ('DEPOSIT', 'Deposit'),

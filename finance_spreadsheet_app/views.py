@@ -64,7 +64,7 @@ class ListListView(ListView):
             context['rent_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='RENT').aggregate(Sum('amount')).get('amount__sum')
             context['miscellaneous_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='MISCELLANEOUS').aggregate(Sum('amount')).get('amount__sum')
             context['loan_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='LOANS').aggregate(Sum('amount')).get('amount__sum')
-            context['investment_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='INVESTMENTS').aggregate(Sum('amount')).get('amount__sum')
+            context['investment_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='INVESTMENT').aggregate(Sum('amount')).get('amount__sum')
             context['subscription_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='SUBSCRIPTIONS').aggregate(Sum('amount')).get('amount__sum')
             context['grocery_total'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], category='GROCERY').aggregate(Sum('amount')).get('amount__sum')
             context['net_difference'] = DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], entry_type='DEPOSIT').aggregate(Sum('amount')).get('amount__sum') - DataInputItem.objects.all().filter(monthly_input_list_id=self.kwargs["monthly_list_id"], entry_type='EXPENSE').aggregate(Sum('amount')).get('amount__sum')

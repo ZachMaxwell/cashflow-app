@@ -26,32 +26,103 @@
 
 
 <table>
-<tr>
-    <th>Total Deposits</th>                     
-    <th>Total Expenses</th>
-    <th>Net Difference</th>                                                     
-    <th>Total Investments</th>
-    <th>Total Going Out & Eating Out Expenses</th>                                                  
-    <th>Total Car Expenses</th>
-    <th>Total Rent Expenses</th>    
-    <th>Total Misc Expenses</th>                                          
-    <th>Total Loan Expenses</th>
-    <th>Total Subscription Expenses</th>
-    <th>Total Grocery Expenses</th>
-</tr>
-<tr>
-    <td>${{ deposit_total|floatformat:2 }}</td>
-    <td>${{ expense_total|floatformat:2 }}</td>
-    <td>${{ net_difference|floatformat:2 }}</td>
-    <td>${{ investment_total|floatformat:2 }}</td>
-    <td>${{ goeo_total|floatformat:2 }}</td>
-    <td>${{ car_total|floatformat:2 }}</td>
-    <td>${{ rent_total|floatformat:2 }}</td>
-    <td>${{ miscellaneous_total|floatformat:2 }}</td>
-    <td>${{ loan_total|floatformat:2 }}</td>
-    <td>${{ subscription_total|floatformat:2 }}</td>
-    <td>${{ grocery_total|floatformat:2 }}</td>
-</tr>
+    <tr>
+        <th>Total Income</th>
+    </tr>
+    <tr>
+        <td>${{ deposit_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+
+<table>
+    <tr>
+        <th>Total Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ expense_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Investments</th>
+    </tr>
+    <tr>
+        <td>${{ investment_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Net Difference | Income vs. Expense</th>
+    </tr>
+    <tr>
+        <td>${{ net_difference|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Going Out & Eating Out Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ goeo_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Car Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ car_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Rent Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ rent_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Misc Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ miscellaneous_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Loan Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ loan_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Subscription Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ subscription_total|floatformat:2 }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Total Grocery Expenses</th>
+    </tr>
+    <tr>
+        <td>${{ grocery_total|floatformat:2 }}</td>
+    </tr>
 </table>
 
 <p>
