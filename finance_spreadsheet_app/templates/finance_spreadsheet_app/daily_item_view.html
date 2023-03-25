@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <h3>Edit list:</h3>
+            <h5>{{ data_input_list.title | upper }}</h5>
+        </div>
+        <ul>
+            {% for dataitem in object_list %}
+                <div>
+                    <div
+                        role="button"
+                        onclick="location.href=
+                        '{% url "item-update" monthly_input_list.id data_input_list.id dataitem.id %}'">
+                        {{ dataitem.category }} |
+                        {{ dataitem.description }} |
+                        transaction occured on {{ dataitem.entry_date | date:"l, F j" }} |
+                        amount: ${{ dataitem.amount }} |
+                        type: {{ dataitem.entry_type}}
+                    </div>
+                </div>
+            {% empty %}
+            <p>There are no items in this list.</p>
+            {% endfor %}
+        </ul>
+        <p>
+            <input
+                value="Add a new item"
+                type="button"
+                onclick="location.href='{% url "item-add" monthly_input_list.id data_input_list.id %}'"/>
+            <input
+                value="Delete this list"
+                type="button"
+                onclick="location.href='{% url "list-delete" monthly_input_list.id data_input_list.id %}'"/>
+            <input
+                value="Go back"
+                type="button"
+                onclick="location.href='{% url "list" monthly_input_list.id %}'"/>
+        </p>
+    </div>
+</div>
+{% endblock %}

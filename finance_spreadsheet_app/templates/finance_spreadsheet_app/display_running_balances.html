@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>
+    Income vs. Expenses
+</h3>
+
+<h4>Expense Total: ${{ expense_total }}</h4>
+<ul>
+    <li>
+        Going Out & Eating Out Total: ${{ goeo_total }}
+    </li>
+    <li>
+        Car Total: ${{ car_total }}
+    </li>
+    <li>
+        Rent Total: ${{ rent_total }}
+    </li>
+    <li>
+        Miscellaneous Totals: ${{ miscellaneous_total }}
+    </li>
+    <li>
+        Loan Total: ${{ loan_total }}
+    </li>
+    <li>
+        Investment Total: ${{ investment_total }}
+    </li>
+    <li>
+        Subscription Total: ${{ subscription_total }}
+    </li>
+    <li>
+        Grocery Total: ${{ grocery_total }}
+    </li>
+
+</ul>
+<h4>Income Total: ${{ deposit_total }}</h4>
+
+<p>
+    <input
+        value="Show daily finance reports"
+        type="button"
+        onclick="location.href='{% url "index" %}'"/>
+</p>
+
+
+{% endblock %}

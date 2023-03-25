@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<!--index.html-->
+{% if object_list %}
+<h3>Monthly Cashflow Reports</h3>
+{% endif %}
+
+{% for monthinputlist in object_list %}
+    <div
+        role="button"
+        onclick="location.href='{% url "monthly-list" monthinputlist.id %}'">
+        {{ monthinputlist.month }}
+    </div>
+{% empty %}
+<h4>There are no monthly cashflow reports to display</h4>
+{% endfor %}
+
+<p>
+    <input
+        value="Add a new month"
+        type="button"
+        onclick="location.href='{% url "monthly-list-add" %}'"/>
+</p>
+
+{% endblock %}
