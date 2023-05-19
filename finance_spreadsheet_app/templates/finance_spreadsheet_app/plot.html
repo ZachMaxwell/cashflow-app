@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<img src="data:image/png;base64, {{ chart_expenses|safe }}">
+<img src="data:image/png;base64, {{ chart_deposits|safe }}">
+<img src="data:image/png;base64, {{ chart_investments|safe }}">
+
+<p>
+    <input 
+        value="Home"
+        role="button"
+        onclick="location.href='{% url "index" %}'">  
+</p>
+
+{% endblock %}

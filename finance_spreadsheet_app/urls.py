@@ -7,6 +7,10 @@ with the appropriate view.
 """
 urlpatterns = [
     
+    #Path to plot view
+    path("monthly_list/plot/", views.plot_view, name="plot"),
+
+
     #MONTHLY LIST
     path("", views.MonthlyListView.as_view(), name="index"),
     path("monthly_list/<int:monthly_list_id>/", views.ListListView.as_view(), name='monthly-list'),

@@ -10,11 +10,58 @@ from .models import MonthlyInputList, DataInputList, DataInputItem
 from django.urls import reverse, reverse_lazy
 from .forms import DataInputItemForm, DataInputListForm
 
+import matplotlib.pyplot as plt
+import pandas as pd
+from .utils import get_deposit_plot, get_expense_plot, get_investment_plot
+
+#--------PLOT VIEW------------
+
+def plot_view(request):
+
+    qs = DataInputItem.objects.values_list('amount', 'entry_type', 'category', 'monthly_input_list')
+        
+    df = pd.DataFrame(list(qs), columns=['amount', 'entry_type', 'category', 'monthly_input_list'])
+    
+    qs_monthlyinputlist = MonthlyInputList.objects.all()
+    qs_datainputitem = DataInputItem.objects.all()
+
+    x = [x.month for x in qs_monthlyinputlist]
+    print(x)
+
+    available_months_ids = set([x.monthly_input_list.id for x in qs_datainputitem])
+    print(available_months_ids)
+
+    y_total_expenses = []
+    y_total_deposits = []
+    y_total_investments = []
+    for monthly_id in available_months_ids:
+        y_total_expenses.append(df.loc[(df['entry_type'] == 'EXPENSE') & (df['monthly_input_list'] == monthly_id), 'amount'].sum())
+        y_total_deposits.append(df.loc[(df['entry_type'] == 'DEPOSIT') & (df['monthly_input_list'] == monthly_id), 'amount'].sum())
+        y_total_investments.append(df.loc[(df['entry_type'] == 'INVESTMENT') & (df['monthly_input_list'] == monthly_id), 'amount'].sum())
+    print(y_total_expenses)
+    print(y_total_deposits)
+    print(y_total_investments)
+    
+    chart_expenses = get_expense_plot(x, y_total_expenses)
+    chart_deposits = get_deposit_plot(x, y_total_deposits)
+    chart_investments = get_investment_plot(x, y_total_investments)
+
+    return render(request, 'finance_spreadsheet_app/plot.html', {'chart_expenses': chart_expenses, 'chart_deposits': chart_deposits, 'chart_investments': chart_investments})     
+
+
 #--------MONTHLY LIST VIEWS---------
 
 class MonthlyListView(ListView):
     model = MonthlyInputList
     template_name = "finance_spreadsheet_app/monthly_list_view.html"
+    
+    def get_context_data(self):
+        context = super(MonthlyListView, self).get_context_data()
+        print("\n")
+        print("This is the monthly list view context: ")
+        print(context)
+        
+        return context
 
 class MonthlyListCreate(CreateView):
     model = MonthlyInputList
@@ -136,6 +183,9 @@ class ItemListView(ListView):
     template_name = "finance_spreadsheet_app/daily_item_view.html"
 
     def get_queryset(self):
+        print("\n")
+        print("All deposit items in DataInputItem: ")
+        print(DataInputItem.objects.filter(entry_type='DEPOSIT'))
         return DataInputItem.objects.filter(data_input_list_id=self.kwargs["list_id"])
 
     def get_context_data(self):
@@ -176,7 +226,9 @@ class ItemUpdate(UpdateView):
         context = super(ItemUpdate, self).get_context_data()
         context["monthly_input_list"] = self.object.monthly_input_list
         context["data_input_list"] = self.object.data_input_list
-        context["title"] = "Edit transaction. I am at ItemUpdate View"
+        context["title"] = "Edit transaction:"
+        print("This is the ItemUpdate context: ")
+        print(context)
         return context
     
     def get_success_url(self):

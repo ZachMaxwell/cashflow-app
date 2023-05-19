@@ -24,6 +24,20 @@
 <h4>There are no transaction entries to display</h4>
 {% endfor %}
 
+<p>
+    <input
+        value="Add a report"
+        type="button"
+        onclick="location.href='{% url "list-add" monthly_input_list.id %}'"/>
+</p>
+
+<p>
+    <input
+        value="Home"
+        type="button"
+        onclick="location.href='{% url "index" %}'"/>
+</p>
+
 
 <table>
     <tr>
@@ -124,19 +138,5 @@
         <td>${{ grocery_total|floatformat:2 }}</td>
     </tr>
 </table>
-
-<p>
-    <input
-        value="Create new"
-        type="button"
-        onclick="location.href='{% url "list-add" monthly_input_list.id %}'"/>
-</p>
-
-<p>
-    <input
-        value="Home"
-        type="button"
-        onclick="location.href='{% url "index" %}'"/>
-</p>
 
 {% endblock %}

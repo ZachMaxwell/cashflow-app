@@ -5,6 +5,7 @@
 <h3>Monthly Cashflow Reports</h3>
 {% endif %}
 
+
 {% for monthinputlist in object_list %}
     <div
         role="button"
@@ -20,6 +21,13 @@
         value="Add a new month"
         type="button"
         onclick="location.href='{% url "monthly-list-add" %}'"/>
+</p>
+
+<p>
+    <input 
+        value="View cashflow chart"
+        role="button"
+        onclick="location.href='{% url "plot" %}'">  
 </p>
 
 {% endblock %}
